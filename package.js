@@ -13,17 +13,3 @@ Package.registerBuildPlugin({
   ],
   npmDependencies: {}
 });
-
-Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('meteor-platform');
-  api.use('numtel:publicsources');
-  api.addFiles([
-    'public/mock.js',
-    'public/mock.css',
-    'public/mock.html'
-  ], 'server', { isAsset: true });
-  api.addFiles([
-    'publicsources-tests.js'
-  ], 'server');
-});

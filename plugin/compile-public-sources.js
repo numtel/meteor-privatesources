@@ -130,18 +130,3 @@ var bundlePublicSources = function(sources){
     };
   }
 }
-
-// XXX: In Automated Testing Mode
-if(process.argv.length > 2 &&
-   process.argv[2].toLowerCase() === 'test-packages'){
-  var outputFile = '/tmp/publicscores-test.data';
-  var uniqueSplitter = '#########940bd99b2b7560243cf280afa1e800b7\n\n'
-  fs.writeFileSync(outputFile, '');
-  processBundles({
-    addAsset: function(asset){
-      fs.appendFileSync(outputFile, uniqueSplitter + JSON.stringify(asset));
-    }
-  }, {
-    "test1": [ 'mock.js', 'mock.html', 'mock.css' ]
-  });
-}
