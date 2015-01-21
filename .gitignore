@@ -1,0 +1,7 @@
+*.*~
+.meteor
+*.swp
+*.swo
+settings.json
+.build*
+.npm
