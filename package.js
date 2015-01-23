@@ -1,15 +1,20 @@
 Package.describe({
-  name: 'numtel:publicsources',
-  summary: 'Create bundles in public directory for lazy-loading components',
+  name: 'numtel:privatesources',
+  summary: 'Create bundles for lazy-loading components, with authentication',
   version: '0.0.1',
-  git: 'https://github.com/numtel/meteor-publicsources.git'
+  git: 'https://github.com/numtel/meteor-privatesources.git'
 });
 
 Package.registerBuildPlugin({
-  name: 'publicSources',
+  name: 'privateSources',
   use: [ ],
   sources: [
-    'plugin/compile-public-sources.js'
+    'plugin/compile-private-sources.js'
   ],
   npmDependencies: {}
+});
+
+Package.onUse(function(api){
+  api.versionsFrom('1.0.2.1');
+  api.addFiles('private-bundle-plugin.js', 'server');
 });

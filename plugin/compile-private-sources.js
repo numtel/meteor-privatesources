@@ -6,13 +6,13 @@ var projectContextModule  = Npm.require('./project-context');
 var PackageSource = Npm.require('./package-source');
 
 var projectContext;
-if(process.publicsourcesProjectContext){
-  projectContext = process.publicsourcesProjectContext;
+if(process.privatesourcesProjectContext){
+  projectContext = process.privatesourcesProjectContext;
 }else{
   projectContext = new projectContextModule.ProjectContext({
     projectDir: process.cwd()
   });
-  process.publicsourcesProjectContext = projectContext;
+  process.privatesourcesProjectContext = projectContext;
   projectContext.prepareProjectForBuild();
 }
 
@@ -33,7 +33,7 @@ var loadJSONContent = function (compileStep, content) {
 
 // XXX Hack. If this line is not present `xxx.json` handlers are not called.
 //  This is a Meteor bug.
-Plugin.registerSourceHandler("json", null);
+// Plugin.registerSourceHandler("json", null);
 
 // End code from mquandalle:bower
 
@@ -48,8 +48,8 @@ var sortHTMLFirst = function(a, b){
   return 0;
 };
 
-Plugin.registerSourceHandler("publicsources.json", {
-  archMatching: "web"
+Plugin.registerSourceHandler('privatesources.json', {
+  archMatching: 'os'
 }, function (compileStep) {
   var bundles = loadJSONContent(compileStep,
     compileStep.read().toString('utf8'));
@@ -61,7 +61,7 @@ var processBundles = function(compileStep, bundles){
   var bundle;
   for(var name in bundles){
     bundle = bundles[name];
-    var processed = bundlePublicSources(bundle.sort(sortHTMLFirst));
+    var processed = bundlePrivateSources(bundle.sort(sortHTMLFirst));
     
     processed.scripts.forEach(function(script){
       compileStep.addAsset({
@@ -90,8 +90,8 @@ var processBundles = function(compileStep, bundles){
   }
 };
 
-// @param {[string]} sources - Relative filenames from public directory
-var bundlePublicSources = function(sources){
+// @param {[string]} sources - Relative filenames from private directory
+var bundlePrivateSources = function(sources){
   if(projectContext.isopackCache !== null){
     var packages = [];
     for(var packageName in projectContext.isopackCache._isopacks){
@@ -101,7 +101,7 @@ var bundlePublicSources = function(sources){
     var packageSource = new PackageSource;
     packageSource.initFromOptions('resources', {
       kind: 'plugin',
-      sourceRoot: path.join(process.cwd(), 'public'),
+      sourceRoot: path.join(process.cwd(), 'private'),
       serveRoot: process.cwd(),
       use: packages,
       npmDependencies: [],
