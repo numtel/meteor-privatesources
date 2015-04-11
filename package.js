@@ -1,7 +1,7 @@
 Package.describe({
   name: 'numtel:privatesources',
   summary: 'Create bundles for lazy-loading components, with authentication',
-  version: '0.0.1',
+  version: '1.0.1',
   git: 'https://github.com/numtel/meteor-privatesources.git'
 });
 

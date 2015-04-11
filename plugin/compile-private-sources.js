@@ -31,10 +31,6 @@ var loadJSONContent = function (compileStep, content) {
   }
 };
 
-// XXX Hack. If this line is not present `xxx.json` handlers are not called.
-//  This is a Meteor bug.
-// Plugin.registerSourceHandler("json", null);
-
 // End code from mquandalle:bower
 
 var isHtmlExt = function(n){ return n.substr(-5).toLowerCase() === '.html' };

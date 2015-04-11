@@ -16,7 +16,7 @@ meteor add iron:router numtel:privatesources
 
 ## Bundle Description Syntax
 
-Inside of a `privatesources.json` file in the root of your application, you may describe bundles of source files to serve to the client.
+Inside of a `custom.privatesources.json` file in the root of your application, you may describe bundles of source files to serve to the client. The filename may be different than `custom.privatesources.json` as long as it includes the extension `.privatesources.json`. (e.g. `myapp.privatesources.json` is also valid)
 
 The following example will serve `admin.js`, `admin.js.map`, `admin.css`, and `admin.css.map`:
 
