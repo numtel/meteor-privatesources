@@ -1,5 +1,9 @@
 # numtel:privatesources
 
+## Notice
+
+**:new: This package has been made obsolete by the new [`numtel:lazy-bundles` package](https://github.com/numtel/meteor-lazy-bundles).**
+
 By default, Meteor does not perform any special handling on files placed inside the `private` directory of your application.
 
 With this package, you can place a `privatesources.json` file in your application directory with a description of bundles of source files to process for client-side lazy-loading.
